@@ -13,10 +13,27 @@ session_start();
 
         :root {
             --primary: #2264C0;
+            --primary-hover: #1a4a8d;
+            --bg-light: #f9fafb;
+            --text-dark: #1f2937;
+            --text-gray: #4b5563;
             --white: #ffffff;
+            --danger: #ef4444;
+            --warning: #f59e0b;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Poppins', sans-serif; 
+        }
+        
+        body { 
+            background-color: var(--bg-light); 
+            color: var(--text-dark); 
+            line-height: 1.6; 
+        }
 
         nav {
             background: var(--white); 
@@ -36,11 +53,143 @@ session_start();
             font-weight: 700; 
             color: var(--primary); 
         }
+
+        .main-container {
+            margin-top: 100px; 
+            max-width: 1200px;
+            margin-left: auto; 
+            margin-right: auto; 
+            padding: 2rem;
+            display: grid; 
+            grid-template-columns: 1fr 1.5fr; 
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) { 
+            .main-container { 
+                grid-template-columns: 1fr; 
+            } 
+        }
+
+        .card {
+            background: var(--white); 
+            border-radius: 1.5rem; 
+            padding: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+
+        .form-card { 
+            background: linear-gradient(to bottom right, #f5f3ff, #eff6ff); 
+            height: fit-content; 
+        }
+
+        h2 { 
+            color: var(--primary); 
+            margin-bottom: 1.5rem; 
+            font-size: 1.5rem; 
+        }
+
+        .form-group { 
+            margin-bottom: 1.2rem; 
+        }
+
+        label { 
+            display: block; 
+            font-weight: 600; 
+            margin-bottom: 0.5rem; 
+        }
+
+        input[type="text"], 
+        input[type="email"], 
+        input[type="tel"], 
+        select, 
+        input[type="file"] {
+            width: 100%; 
+            padding: 0.75rem; 
+            border-radius: 0.5rem;
+            border: 2px solid #e5e7eb; 
+            outline: none; 
+            font-size: 0.95rem;
+        }
+
+        input:focus, select:focus { 
+            border-color: var(--primary); 
+        }
+
+        .btn {
+            padding: 0.75rem 2rem; 
+            border-radius: 9999px; 
+            font-weight: 600;
+            cursor: pointer; 
+            border: none; 
+            color: white; 
+            text-decoration: none;
+            display: inline-block; 
+            text-align: center; 
+            transition: transform 0.2s;
+        }
+
+        .btn:hover { 
+            opacity: 0.9; 
+            transform: scale(1.02); 
+        }
+
+        .btn-submit { 
+            background: linear-gradient(90deg, #2264C0 0%, #3b82f6 100%); 
+            width: 100%; 
+        }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-brand">Litz</div>
     </nav>
+
+    <div class="main-container">
+        <div class="card form-card">
+            <h2>Tambah Kontak</h2>
+            
+            <form method="POST" action="" enctype="multipart/form-data">
+                <input type="hidden" name="action" value="add">
+
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" name="name" placeholder="Budi Santoso" required>
+                    <small style="color: #666; font-size: 0.8rem;">*Hanya huruf dan spasi</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="email@contoh.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Nomor Telepon</label>
+                    <input type="text" name="phone" placeholder="0812..." required>
+                </div>
+
+                <div class="form-group">
+                    <label>Foto Profil</label>
+                    <input type="file" name="photo" accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label>Layanan (Opsional)</label>
+                    <select name="service">
+                        <option value="">Pilih Layanan</option>
+                        <option value="Video">Produksi Video</option>
+                        <option value="Desain">Desain Grafis</option>
+                        <option value="Konten">Strategi Konten</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-submit">Simpan Kontak</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>Daftar Kontak</h2>
+        </div>
+    </div>
 </body>
 </html>
